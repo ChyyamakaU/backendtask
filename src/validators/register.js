@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const validateRegister = (req, res, next) => {
   const { name, email, password, role } = req.body;
 
@@ -26,5 +27,5 @@ const validateLogin = (req, res, next) => {
 
 module.exports = {
   validateRegister,
-  validateLogin
+
 };
