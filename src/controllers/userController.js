@@ -4,23 +4,10 @@ const bcrypt = require("bcrypt");
 const allUsers = [];
 
 const registerNew = async (req, res) => {
-
-
-    console.log ('your controller is reached')
-  if (
-    !req.body.name ||
-    !req.body.email ||
-    !req.body.password ||
-    !req.body.role
-  ) {
-    return res.status(400).json({
-      status: "error",
-      message: "Name, email, password and role are required"
-    });
-  }
+  const { name, email, password, role } = req.body;
 
   const existingUser = allUsers.find(
-    user => user.email === req.body.email
+    user => user.email === email
   );
 
   if (existingUser) {
@@ -31,23 +18,19 @@ const registerNew = async (req, res) => {
   }
 
   const hashedPassword = await bcrypt.hash(
-    req.body.password,
+    password,
     process.env.SALT_ROUNDS
   );
 
   const newUser = {
     id: allUsers.length + 1,
-    name: req.body.name,
-    email: req.body.email,
+    name,
+    email,
     password: hashedPassword,
-    role: req.body.role
+    role
   };
 
   allUsers.push(newUser);
-
-  console.log(
-    `User ${newUser.name} your account was registered successfully`
-  );
 
   return res.status(201).json({
     status: "success",
@@ -55,6 +38,39 @@ const registerNew = async (req, res) => {
   });
 };
 
+const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  const existingUser = allUsers.find(
+    user => user.email === email
+  );
+
+  if (!existingUser) {
+    return res.status(401).json({
+      status: "error",
+      message: "Invalid email or password"
+    });
+  }
+
+  const passwordMatch = await bcrypt.compare(
+    password,
+    existingUser.password
+  );
+
+  if (!passwordMatch) {
+    return res.status(401).json({
+      status: "error",
+      message: "Invalid email or password"
+    });
+  }
+
+  return res.status(200).json({
+    status: "success",
+    message: "Login successful"
+  });
+};
+
 module.exports = {
-  registerNew
+  registerNew,
+  loginUser
 };
