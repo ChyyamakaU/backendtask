@@ -7,9 +7,15 @@ const {
 } = require("../controllers/userController");
 
 const {
-  validateRegister,
+  validateRegister
+ 
+} = require("../validators/register");
+
+const {
+  
   validateLogin
-} = require("../validators/userValidator");
+} = require("../validators/login");
+
 
 const router = express.Router();
 
