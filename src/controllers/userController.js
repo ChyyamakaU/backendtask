@@ -1,10 +1,15 @@
 /* eslint-disable no-undef */
+
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+
+
 const allUsers = [];
 
+
 const registerNew = async (req, res) => {
+  
     const { name, email, password, role } = req.body;
 
     const existingUser = allUsers.find(
@@ -14,28 +19,26 @@ const registerNew = async (req, res) => {
     if (existingUser) {
         return res.status(409).json({
             status: "error",
-            message: "Email already exists"
+            message: "This email already exists"
         });
     }
 
-    const hashedPassword = await bcrypt.hash(
-        password,
-        process.env.SALT_ROUNDS
-    );
-
+    const hashedPassword = await bcrypt.hash(password, Number(process.env.SALT_ROUNDS));
+  
     const newUser = {
         id: allUsers.length + 1,
         name,
         email,
-        password: hashedPassword,
+        password : hashedPassword,
         role
     };
 
     allUsers.push(newUser);
+    console.log(allUsers)
 
     return res.status(201).json({
         status: "success",
-        message: "User registered successfully"
+        message: "User registeration successful"
     });
 };
 
@@ -49,7 +52,7 @@ const loginUser = async (req, res) => {
     if (!existingUser) {
         return res.status(401).json({
             status: "error",
-            message: "Invalid email or password"
+            message: "Invalid email"
         });
     }
 
@@ -61,11 +64,11 @@ const loginUser = async (req, res) => {
     if (!passwordMatch) {
         return res.status(401).json({
             status: "error",
-            message: "Invalid email or password"
+            message: "Invalid password"
         });
     }
 
-    // eslint-disable-next-line no-unused-vars
+ 
     const token = jwt.sign(
         {
             id: existingUser.id,

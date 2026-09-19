@@ -8,8 +8,15 @@ const app = express ();
 const userRoute = require("./routes/userRoute")
 
 app.use (express.json())
+
+// app.use("/", (req, res) => {
+//     res.status(200).json({
+//         "status" : "successful",
+//         "message" : "Api is running"
+//     })
+// })
 // app.use("/greet", greetroute)
-app.use("/register", userRoute)
+app.use("/user", userRoute)
 
 module.exports = app;
 
