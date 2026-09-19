@@ -6,4 +6,4 @@ const adminController = (req, res) => {
   });
 };
 
-module.exports = adminController;
+module.exports = adminController; 
