@@ -6,6 +6,7 @@ const app = express ();
 
 // const greetroute = require("./routes/greetroute")
 const userRoute = require("./routes/userRoute")
+const adminRoute = require("./routes/adminRoute");
 
 app.use (express.json())
 
@@ -17,6 +18,6 @@ app.use (express.json())
 // })
 // app.use("/greet", greetroute)
 app.use("/user", userRoute)
-
+app.use("/admin", adminRoute)
 module.exports = app;
 
