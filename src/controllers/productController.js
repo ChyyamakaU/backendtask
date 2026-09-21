@@ -28,3 +28,29 @@ const addProduct = (req, res) => {
 
 
 }
+
+const editProduct = (req, res, next) => {
+
+    const { id } = req.params;
+    const { name, price, description } = req.body;
+
+    const product = products.find(P => P.id === Number(id));
+
+    if (!product) {
+        return res.status(404).json({
+            "message": "Product not found!"
+        })
+    }
+
+    product.name = name ?? product.name;
+    product.price = price ?? product.price;
+    product.description = description ?? product.description;
+
+    res.status(200).json({
+        "status": "sucess",
+        "message": "Product sucessfully updated"
+    })
+
+
+  
+}
