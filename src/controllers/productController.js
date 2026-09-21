@@ -13,6 +13,7 @@ const product = (req, res) => {
     })
 }
 
+// eslint-disable-next-line no-unused-vars
 const addProduct = (req, res) => {
 
    
@@ -30,7 +31,7 @@ const addProduct = (req, res) => {
 
 }
 
-const editProduct = (req, res, next) => {
+const editProduct = (req, res) => {
 
     const { id } = req.params;
     const { name, price, description } = req.body;
@@ -66,7 +67,7 @@ const deleteProduct = (req, res) => {
     products.splice(productIndex, 1)
 
     res.status(200).json({
-        "message": "Product removed successfully"
+        "message": "Product sucessfully remover from cart"
     })
 }
 
