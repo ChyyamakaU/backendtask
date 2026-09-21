@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const { products } = require("../database")
 
 
@@ -50,7 +51,28 @@ const editProduct = (req, res, next) => {
         "status": "sucess",
         "message": "Product sucessfully updated"
     })
+}
 
+const deleteProduct = (req, res) => {
+    const { id } = req.params;
+    const productIndex = products.findIndex(P => P.id === Number(id));
 
-  
+    if (productIndex === -1) {
+        return res.status(404).json({
+            "message": "Product not found!"
+        })
+    }
+
+    products.splice(productIndex, 1)
+
+    res.status(200).json({
+        "message": "Product removed successfully"
+    })
+}
+
+module.exports = {
+    product,
+    addProduct,
+    editProduct,
+    deleteProduct
 }
