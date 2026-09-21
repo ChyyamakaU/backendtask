@@ -18,6 +18,6 @@ app.use (express.json())
 // })
 // app.use("/greet", greetroute)
 app.use("/user", userRoute)
-app.use("/admin", adminRoute)
+app.use("/api", adminRoute)
 module.exports = app;
 

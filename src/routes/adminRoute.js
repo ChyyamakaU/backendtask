@@ -3,8 +3,8 @@ const express = require("express");
 const router = express.Router();
 
 const adminController = require("../controllers/adminController");
-const authentication = require("../middleware/authentication");
-const authorization = require("../middleware/authorization");
+const authentication = require("../middleware/authenticate");
+const authorization = require("../middleware/authorise");
 
 router.get(
   "/admin",
@@ -12,5 +12,4 @@ router.get(
   authorization,
   adminController
 );
-
 module.exports = router;
