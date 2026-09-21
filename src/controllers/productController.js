@@ -67,7 +67,7 @@ const deleteProduct = (req, res) => {
     products.splice(productIndex, 1)
 
     res.status(200).json({
-        "message": "Product sucessfully remover from cart"
+        "message": "Product sucessfully removed from cart"
     })
 }
 
