@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-const { products } = require("../database/database");
+const { products } = require("../database/products");
 
 const product = (req, res) => {
     return res.status(200).json({

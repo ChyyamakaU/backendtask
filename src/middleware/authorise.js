@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const authorization = (req, res, next) => {
+const authorise = (req, res, next) => {
   if (req.user.role !== "admin") {
     return res.status(403).json({
       status: "error",
@@ -10,4 +10,4 @@ const authorization = (req, res, next) => {
   next();
 };
 
-module.exports = authorization;
+module.exports = authorise;

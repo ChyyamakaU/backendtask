@@ -68,25 +68,23 @@ const loginUser = async (req, res) => {
     });
   }
 
-  const token = jwt.sign(
+const token = jwt.sign(
     {
-      id: existingUser.id,
-      email: existingUser.email,
-      role: existingUser.role
+        id: existingUser.id,
+        email: existingUser.email,
+        role: existingUser.role
     },
     process.env.JWT_SECRET,
     {
-      expiresIn: "1h"
+        expiresIn: "1h"
     }
-  );
+);
 
-
-  
-  return res.status(200).json({
+return res.status(200).json({
     status: "success",
     message: "Login successful",
     token
-  });
+});
 };
 
 module.exports = {
