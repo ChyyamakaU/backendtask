@@ -2,22 +2,18 @@
 
 const express = require("express");
 
-const app = express ();
+const app = express();
 
-// const greetroute = require("./routes/greetroute")
-const userRoute = require("./routes/userRoute")
+const userRoute = require("./routes/userRoute");
 const adminRoute = require("./routes/adminRoute");
+const { productRoute } = require("./routes/productRoute");
 
-app.use (express.json())
+app.use(express.json());
 
-// app.use("/", (req, res) => {
-//     res.status(200).json({
-//         "status" : "successful",
-//         "message" : "Api is running"
-//     })
-// })
-// app.use("/greet", greetroute)
-app.use("/user", userRoute)
-app.use("/api", adminRoute)
+app.use("/user", userRoute);
+
+app.use("/api", adminRoute);
+
+app.use("/products", productRoute);
+
 module.exports = app;
-
