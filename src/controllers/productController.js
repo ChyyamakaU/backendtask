@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const { products } = require("../database")
+const { products } = require("../database/database")
 
 
 
