@@ -3,7 +3,7 @@
 const users = [];
 
 const products = [
-    {id:1, name: "Fruits", description: "fresh fruits", price: 105},
+    {id:1, name: "Shoes", description: "leather shoes", price: 105},
     {id:2, name: "Electronics", description: "ALl quality elctronics", price: 2080},
     {id:3, name: "Furnitures", description: "Hand made furnitures", price: 2322},
     {id:4, name: "Cosmetics", description: "quality cosmetics", price: 155},
